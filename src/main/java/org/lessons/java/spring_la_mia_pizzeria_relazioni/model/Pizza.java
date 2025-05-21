@@ -1,10 +1,11 @@
 package org.lessons.java.spring_la_mia_pizzeria_relazioni.model;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +23,9 @@ public class Pizza {
     private String photo;
     @Min(value = 0, message = "Il prezzo deve essere maggiore o uguale a 0")
     private Double price;
+
+    @OneToMany(mappedBy = "pizza")
+    private List<Deal> deals;
 
     // Constructor
     public Pizza() {
@@ -66,5 +70,13 @@ public class Pizza {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Deal> getDeals() {
+        return deals;
+    }
+
+    public void setDeals(List<Deal> deals) {
+        this.deals = deals;
     }
 }
