@@ -2,6 +2,9 @@ package org.lessons.java.spring_la_mia_pizzeria_relazioni.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,7 +27,7 @@ public class Pizza {
     @Min(value = 0, message = "Il prezzo deve essere maggiore o uguale a 0")
     private Double price;
 
-    @OneToMany(mappedBy = "pizza")
+    @OneToMany(mappedBy = "pizza", cascade = { CascadeType.REMOVE })
     private List<Deal> deals;
 
     // Constructor
