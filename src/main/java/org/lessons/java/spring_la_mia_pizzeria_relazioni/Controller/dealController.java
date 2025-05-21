@@ -13,4 +13,5 @@ public class dealController {
         return "deals/index";
     }
 
+    
 }

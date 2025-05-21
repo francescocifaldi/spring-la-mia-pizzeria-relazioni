@@ -39,6 +39,9 @@
                                                 th:data-bs-target="'#modal'+${pizza.id}">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
+                                            <a th:href="@{/pizzas/{id}/deal(id=${pizza.id})}" class="btn btn-primary">
+                                                <i class="fa-solid fa-tag"></i>
+                                            </a>
 
                                         </div>
 
