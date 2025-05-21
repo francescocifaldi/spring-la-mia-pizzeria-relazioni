@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.naming.Binding;
 
+import org.lessons.java.spring_la_mia_pizzeria_relazioni.model.Deal;
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.model.Pizza;
+import org.lessons.java.spring_la_mia_pizzeria_relazioni.repository.DealRepository;
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,9 @@ public class pizzaController {
 
     @Autowired
     private PizzaRepository repo;
+
+    @Autowired
+    private DealRepository dealRepo;
 
     @GetMapping
     public String index(Model model) {
@@ -93,5 +98,14 @@ public class pizzaController {
     public String delete(@PathVariable("id") Integer id) {
         repo.deleteById(id);
         return "redirect:/pizzas";
+    }
+
+    @GetMapping("/{id}/deal")
+    public String deal(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("pizza", repo.findById(id).get());
+        Deal deal = new Deal();
+        deal.setPizza(repo.findById(id).get());
+        model.addAttribute("deal", deal);
+        return "deals/create";
     }
 }
