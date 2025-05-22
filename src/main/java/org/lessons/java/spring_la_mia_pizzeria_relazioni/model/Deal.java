@@ -1,5 +1,6 @@
 package org.lessons.java.spring_la_mia_pizzeria_relazioni.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
@@ -18,14 +20,15 @@ public class Deal {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull(message = "Il titolo è obbligatorio")
     private String title;
 
-    @NotBlank(message = "La data di inizio è obbligatoria")
+    @NotNull(message = "La data di inizio è obbligatoria")
     @PastOrPresent(message = "La data di inizio deve essere nel passato o presente")
-    private Date startDate;
+    private LocalDate startDate;
 
-    @NotBlank(message = "La data di fine è obbligatoria")
-    private Date endDate;
+    @NotNull(message = "La data di fine è obbligatoria")
+    private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name = "pizza_id", nullable = false)
@@ -50,19 +53,19 @@ public class Deal {
         this.title = title;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return this.startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public @NotNull(message = "La data di fine è obbligatoria") LocalDate getEndDate() {
         return this.endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

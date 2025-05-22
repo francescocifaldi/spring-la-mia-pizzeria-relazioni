@@ -27,21 +27,25 @@
                                 <div>
                                     <p class="card-text">€ [[*{price}]]</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <a th:href="@{/pizzas/{id}(id=${pizza.id})}" class="btn btn-primary">
+                                        <a th:href="@{/pizzas/{id}(id=${pizza.id})}" class="btn btn-primary"
+                                            title="Mostra dettagli">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </a>
 
                                         <div class="d-flex justify-content-between align-items-center gap-2">
-                                            <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-primary">
+                                            <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-primary"
+                                                title="Modifica">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                th:data-bs-target="'#modal'+${pizza.id}">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                            <a th:href="@{/pizzas/{id}/deal(id=${pizza.id})}" class="btn btn-primary">
+                                            <a th:href="@{/pizzas/{id}/deal(id=${pizza.id})}" class="btn btn-primary"
+                                                title="Crea offerta">
                                                 <i class="fa-solid fa-tag"></i>
                                             </a>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                th:data-bs-target="'#modal'+${pizza.id}" title="Elimina">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+
 
                                         </div>
 

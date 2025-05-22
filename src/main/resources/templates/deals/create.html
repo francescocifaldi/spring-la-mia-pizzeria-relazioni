@@ -10,38 +10,41 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center">Crea una nuova offerta per la pizza [[${deal.pizza.name}]]</h1>
+        <h1 class="text-center">Crea una nuova offerta per la pizza</h1>
 
-        <!-- <form id="pizza-form" th:action="@{...}" method="post" th:object="${pizza}">
+        <form id="deal-form" th:action="@{/deals/create}" method="post" th:object="${deal}">
+
+            <input type="hidden" th:field="*{pizza}" />
+
             <div class="mb-3">
                 <div>
-                    <label for="name" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="name" name="name" required th:field="*{name}"
+                    <label for="title" class="form-label">Titolo</label>
+                    <input type="text" class="form-control" id="title" name="title" required th:field="*{title}"
                         th:errorclass="is-invalid" />
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}">
                         <ul>
-                            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                            <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
                         </ul>
                     </div>
                 </div>
 
                 <div>
-                    <label for="description" class="form-label">Descrizione</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"
-                        th:field="*{description}" th:errorclass="is-invalid"></textarea>
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
+                    <label for="start-date" class="form-label">Data d'inizio</label>
+                    <input type="date" class="form-control" id="start-date" name="start-date" th:field="*{startDate}"
+                        th:errorclass="is-invalid"></input>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}">
                         <ul>
-                            <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+                            <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
                         </ul>
                     </div>
                 </div>
                 <div>
-                    <label for="price" class="form-label">Prezzo</label>
-                    <input type="number" class="form-control" id="price" name="price" required th:field="*{price}"
-                        th:errorclass="is-invalid" />
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                    <label for="end-date" class="form-label">Data di fine</label>
+                    <input type="date" class="form-control" id="end-date" name="end-date" th:field="*{endDate}"
+                        th:errorclass="is-invalid"></input>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('endDate')}">
                         <ul>
-                            <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+                            <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></li>
                         </ul>
                     </div>
                 </div>
@@ -51,7 +54,7 @@
                 <input type="submit" class="btn btn-primary" value="Crea" />
                 <input type="reset" class="btn btn-danger" value="Annulla" />
             </div>
-        </form> -->
+        </form>
     </div>
 </body>
 

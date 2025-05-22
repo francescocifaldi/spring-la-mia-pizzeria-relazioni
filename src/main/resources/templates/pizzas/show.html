@@ -9,19 +9,34 @@
 <th:block th:replace="~{fragments :: custom-navbar}"></th:block>
 
 <body>
-    <div class="container">
-        <h1 class="text-center"> [[${pizza.name}]]</h1>
-        <div class="row">
-            <div class="col-6 d-flex justify-content-center">
-                <img th:src="@{${pizza.photo} != null ? '/imgs/' + ${pizza.photo} : '/imgs/placeholder.png'}"
-                    class="card-img-top" alt="..." />
-            </div>
-            <div class="col-6">
-                <p th:text="${pizza.description}"></p>
-                <p>Prezzo: €[[${pizza.price}]]</p>
+    <section class="pizza-details">
+        <div class="container">
+            <h1 class="text-center"> [[${pizza.name}]]</h1>
+            <div class="row">
+                <div class="col-6 d-flex justify-content-center">
+                    <img th:src="@{${pizza.photo} != null ? '/imgs/' + ${pizza.photo} : '/imgs/placeholder.png'}"
+                        class="card-img-top" alt="..." />
+                </div>
+                <div class="col-6">
+                    <p th:text="${pizza.description}"></p>
+                    <p>Prezzo: €[[${pizza.price}]]</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="pizza-deals">
+        <div class="container">
+            <h2>Offerte disponibili:</h2>
+            <th:block th:each="deal : ${pizza.deals}">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">[[${deal.title}]]</h5>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </section>
 </body>
 
 </html>
