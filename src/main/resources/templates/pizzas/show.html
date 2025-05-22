@@ -9,7 +9,7 @@
 <th:block th:replace="~{fragments :: custom-navbar}"></th:block>
 
 <body>
-    <section class="pizza-details">
+    <section class="pizza-details mb-2">
         <div class="container">
             <h1 class="text-center"> [[${pizza.name}]]</h1>
             <div class="row">
@@ -26,16 +26,34 @@
     </section>
 
     <section class="pizza-deals">
-        <div class="container">
-            <h2>Offerte disponibili:</h2>
-            <th:block th:each="deal : ${pizza.deals}">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">[[${deal.title}]]</h5>
-                    </div>
-                </div>
-            </th:block>
+        <div class="container mb-2">
+            <a th:href="@{/pizzas/{id}/deal(id=${pizza.id})}" class="btn btn-outline-danger w-100 px-0">Crea Offerta</a>
         </div>
+        <div class="container" th:if="${!pizza.deals.isEmpty()}">
+            <h4>Offerte disponibili:</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Data inizio</th>
+                        <th>Data fine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="deal : ${pizza.deals}" th:object="${deal}">
+                        <tr>
+                            <td th:text="*{title}"></td>
+                            <td th:text="*{startDate}"></td>
+                            <td th:text="*{endDate}"></td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+        <div class="container" th:if="${pizza.deals.isEmpty()}">
+            <div class="alert alert-info h-100" role="alert">
+                <i>Non ci sono offerte disponibili per la pizza selezionata</i>
+            </div>
     </section>
 </body>
 

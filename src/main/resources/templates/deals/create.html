@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center">Crea una nuova offerta per la pizza</h1>
+        <h1 class="text-center">Crea una nuova offerta per la pizza [[${pizza.name}]]</h1>
 
         <form id="deal-form" th:action="@{/deals/create}" method="post" th:object="${deal}">
 
