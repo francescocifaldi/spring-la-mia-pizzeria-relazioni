@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/pizzas")
-public class pizzaController {
+public class PizzaController {
 
     @Autowired
     private PizzaRepository repo;

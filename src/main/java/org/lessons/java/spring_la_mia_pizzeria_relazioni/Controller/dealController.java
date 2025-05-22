@@ -16,7 +16,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/deals")
-public class dealController {
+public class DealController {
 
     @Autowired
     private DealRepository repo;

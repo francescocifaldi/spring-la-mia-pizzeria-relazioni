@@ -22,17 +22,16 @@ public class Pizza {
 
     @NotBlank(message = "Il nome è obbligatorio")
     private String name;
+
     private String description;
+
     private String photo;
+
     @Min(value = 0, message = "Il prezzo deve essere maggiore o uguale a 0")
     private Double price;
 
     @OneToMany(mappedBy = "pizza", cascade = { CascadeType.REMOVE })
     private List<Deal> deals;
-
-    // Constructor
-    public Pizza() {
-    }
 
     // Getters and Setters
     public Integer getId() {
