@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:replace="~{fragments :: styles}"></th:block>
+</head>
+<th:block th:replace="~{fragments :: custom-navbar}"></th:block>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+
+            <h1>Elenco dei nostri ingredienti</h1>
+            <th:block th:each="ingredient : ${ingredients}" th:object="${ingredient}">
+                <p th:text="*{name}"></p>
+            </th:block>
+            </th:block>
+        </div>
+    </div>
+    </div>
+
+    <th:block th:replace="~{fragments :: scripts}"></th:block>
+</body>
+
+</html>

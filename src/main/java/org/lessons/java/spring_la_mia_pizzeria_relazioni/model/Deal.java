@@ -34,9 +34,6 @@ public class Deal {
     @JoinColumn(name = "pizza_id", nullable = false)
     private Pizza pizza;
 
-    public Deal() {
-    }
-
     public Integer getId() {
         return this.id;
     }
