@@ -1,9 +1,6 @@
 package org.lessons.java.spring_la_mia_pizzeria_relazioni.model;
 
 import java.util.List;
-
-import org.hibernate.annotations.Cascade;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

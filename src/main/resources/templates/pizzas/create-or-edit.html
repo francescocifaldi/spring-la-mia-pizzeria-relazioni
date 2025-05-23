@@ -10,8 +10,16 @@
 
 <body>
   <div class="container">
-    <h1 class="text-center">Crea una nuova pizza</h1>
-    <form id="pizza-form" th:action="@{/pizzas/create}" method="post" th:object="${pizza}">
+    <h1 class="text-center">
+      <span th:if="${edit}">
+        Modifica la pizza [[${pizza.name}]]
+      </span>
+      <span th:unless="${edit}">
+        Crea una nuova pizza
+      </span>
+    </h1>
+    <form id="pizza-form" th:action="${edit} ? @{/pizzas/edit(id=${pizza.id})} : @{/pizzas/create}" method="post"
+      th:object="${pizza}">
       <div class="mb-3">
         <div>
           <label for="name" class="form-label">Nome</label>
