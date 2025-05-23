@@ -1,8 +1,11 @@
 package org.lessons.java.spring_la_mia_pizzeria_relazioni.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -15,6 +18,9 @@ public class Ingredient {
 
     @NotBlank(message = "Il nome è obbligatorio")
     private String name;
+
+    @ManyToMany(mappedBy = "ingredients")
+    private List<Pizza> pizzas;
 
     public Integer getId() {
         return this.id;
@@ -30,6 +36,14 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Pizza> getPizzas() {
+        return this.pizzas;
+    }
+
+    public void setPizzas(List<Pizza> pizzas) {
+        this.pizzas = pizzas;
     }
 
 }
