@@ -18,7 +18,7 @@
         Crea una nuova pizza
       </span>
     </h1>
-    <form id="pizza-form" th:action="${edit} ? @{/pizzas/edit(id=${pizza.id})} : @{/pizzas/create}" method="post"
+    <form id="pizza-form" th:action="${edit} ? @{/pizzas/edit/{id}(id=${pizza.id})} : @{/pizzas/create}" method="post"
       th:object="${pizza}">
       <div class="mb-3">
         <div>
@@ -55,7 +55,8 @@
       </div>
 
       <div class="mb-3 d-flex justify-content-between">
-        <input type="submit" class="btn btn-primary" value="Crea" />
+        <input th:if="${edit}" type="submit" class="btn btn-primary" value="Modifica" />
+        <input th:unless="${edit}" type="submit" class="btn btn-primary" value="Crea" />
         <input type="reset" class="btn btn-danger" value="Annulla" />
       </div>
     </form>
