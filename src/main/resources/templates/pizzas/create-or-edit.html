@@ -21,7 +21,7 @@
     <form id="pizza-form" th:action="${edit} ? @{/pizzas/edit/{id}(id=${pizza.id})} : @{/pizzas/create}" method="post"
       th:object="${pizza}">
       <div class="mb-3">
-        <div>
+        <div class="mb-2">
           <label for="name" class="form-label">Nome</label>
           <input type="text" class="form-control" id="name" name="name" required th:field="*{name}"
             th:errorclass="is-invalid" />
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="mb-2">
           <label for="description" class="form-label">Descrizione</label>
           <textarea class="form-control" id="description" name="description" rows="3" th:field="*{description}"
             th:errorclass="is-invalid"></textarea>
@@ -42,7 +42,8 @@
             </ul>
           </div>
         </div>
-        <div>
+
+        <div class="mb-2">
           <label for="price" class="form-label">Prezzo</label>
           <input type="number" class="form-control" id="price" name="price" required th:field="*{price}"
             th:errorclass="is-invalid" />
@@ -51,6 +52,15 @@
               <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Ingredienti</label>
+        <div class="form-check" th:each="ingredient : ${ingredients}">
+          <input type="checkbox" class="form-check-input" th:id="'ingredient' + ${ingredient.id}"
+            th:field="${pizza.ingredients}" th:value="${ingredient.id}" />
+          <label class="form-check-label" th:for="'ingredient' + ${ingredient.id}" th:text="${ingredient.name}"></label>
         </div>
       </div>
 
