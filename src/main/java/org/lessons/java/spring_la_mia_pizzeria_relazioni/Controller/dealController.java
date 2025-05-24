@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/deals")
@@ -50,4 +51,13 @@ public class DealController {
         dealRepository.save(newDeal);
         return "redirect:/pizzas/" + newDeal.getPizza().getId();
     }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        Deal deal = dealRepository.findById(id).get();
+        dealRepository.delete(deal);
+
+        return "redirect:/pizzas/" + deal.getPizza().getId();
+    }
+
 }

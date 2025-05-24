@@ -87,11 +87,36 @@
                             <td class="text-end">
                                 <a th:href="@{/deals/edit/{id}(id=${deal.id})}" class="btn btn-primary btn-sm"
                                     title="Modifica offerta"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <form th:action="@{/pizzas/{id}/deals/{dealID}(id=${pizza.id}, dealID=${deal.id})}"
-                                    method="post" class="d-inline">
-                                    <button type="submit" class="btn btn-danger btn-sm" title="Elimina offerta"><i
-                                            class="fa-solid fa-trash"></i></button>
-                                </form>
+
+                                <button type="submit" class="btn btn-danger btn-sm" title="Elimina offerta"
+                                    data-bs-toggle="modal" data-bs-target="#deal-modal">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deal-modal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Elimino offerta [[${deal.title}]]</h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Sei sicuro?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Annulla</button>
+                                                <form th:action="@{/deals/delete/{id}(id=${deal.id})}" method="post">
+                                                    <button type="submit" class="btn btn-danger">
+                                                        Elimina
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </td>
                         </tr>
                     </th:block>
