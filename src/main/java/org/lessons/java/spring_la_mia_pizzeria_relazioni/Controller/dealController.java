@@ -1,4 +1,4 @@
-package org.lessons.java.spring_la_mia_pizzeria_relazioni.Controller;
+package org.lessons.java.spring_la_mia_pizzeria_relazioni.controller;
 
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.model.Deal;
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.repository.DealRepository;
