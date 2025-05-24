@@ -20,6 +20,10 @@
     </h1>
     <form id="pizza-form" th:action="${edit} ? @{/pizzas/edit/{id}(id=${pizza.id})} : @{/pizzas/create}" method="post"
       th:object="${pizza}">
+
+      <input type="hidden" th:field="*{id}" />
+      <input type="hidden" th:field="*{photo}" />
+
       <div class="mb-3">
         <div class="mb-2">
           <label for="name" class="form-label">Nome</label>
