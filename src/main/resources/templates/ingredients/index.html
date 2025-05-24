@@ -11,19 +11,28 @@
 <body>
     <div class="container">
         <div class="row">
-
+            <a title="Crea ingrediente" class="btn btn-outline-primary my-2" th:href="@{/ingredients/create}">
+                Crea un nuovo ingrediente
+            </a>
 
             <h1 class="text-center">Elenco dei nostri ingredienti</h1>
             <table class="table">
                 <thead>
                     <th>Nome</th>
                     <th>Numero di pizze in cui è presente</th>
+                    <th></th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <th:block th:each="ingredient : ${ingredients}" th:object="${ingredient}">
                         <tr>
                             <td th:text="*{name}"></td>
                             <td th:text="*{pizzas.size()}"></td>
+                            <td><a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}" class="btn btn-primary"
+                                    title="Modifica">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a></td>
+                            <td>btn</td>
                         </tr>
                     </th:block>
                 </tbody>

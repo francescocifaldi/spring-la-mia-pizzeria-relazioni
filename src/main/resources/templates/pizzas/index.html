@@ -11,9 +11,11 @@
 <body>
     <div class="container">
         <div class="row">
+            <a title="Crea pizza" class="btn btn-outline-primary my-2" th:href="@{/pizzas/create}">Crea una nuova
+                pizza</a>
             <th:block th:if="${!pizzas.isEmpty()}">
 
-                <h1>L'elenco delle nostre pizze</h1>
+                <h1 class="text-center">L'elenco delle nostre pizze</h1>
                 <th:block th:each="pizza : ${pizzas}" th:object="${pizza}">
                     <div class="col-3 p-2">
                         <div class="card p-2 h-100">
