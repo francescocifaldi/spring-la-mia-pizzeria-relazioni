@@ -34,8 +34,8 @@
 
                 <div>
                     <label for="start-date" class="form-label">Data d'inizio</label>
-                    <input type="date" class="form-control" id="start-date" th:field="*{startDate}"
-                        th:errorclass="is-invalid">
+                    <input type="date" class="form-control" id="start-date" name="startDate"
+                        th:value="${#temporals.format(deal.startDate, 'yyyy-MM-dd')}" th:errorclass="is-invalid">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}">
                         <ul>
                             <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
@@ -44,8 +44,8 @@
                 </div>
                 <div>
                     <label for="end-date" class="form-label">Data di fine</label>
-                    <input type="date" class="form-control" id="end-date" th:field="*{endDate}"
-                        th:errorclass="is-invalid">
+                    <input type="date" class="form-control" id="end-date" name="endDate"
+                        th:value="${#temporals.format(deal.endDate, 'yyyy-MM-dd')}" th:errorclass="is-invalid">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('endDate')}">
                         <ul>
                             <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></li>

@@ -3,7 +3,6 @@ package org.lessons.java.spring_la_mia_pizzeria_relazioni.controller;
 import java.util.List;
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.model.Deal;
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.model.Pizza;
-import org.lessons.java.spring_la_mia_pizzeria_relazioni.repository.DealRepository;
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.repository.IngredientRepository;
 import org.lessons.java.spring_la_mia_pizzeria_relazioni.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,6 @@ public class PizzaController {
 
     @Autowired
     private IngredientRepository ingredientRepository;
-
-    @Autowired
-    private DealRepository dealRepository;
 
     @GetMapping
     public String index(Model model) {
