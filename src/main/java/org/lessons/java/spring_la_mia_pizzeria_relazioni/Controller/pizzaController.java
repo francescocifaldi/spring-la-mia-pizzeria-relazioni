@@ -111,13 +111,4 @@ public class PizzaController {
         model.addAttribute("deal", deal);
         return "deals/create-or-edit";
     }
-
-    @GetMapping("/{id}/deals/{dealID}")
-    public String editDeal(@PathVariable("id") Integer id, @PathVariable("dealID") Integer dealID, Model model) {
-        model.addAttribute("pizza", pizzaRepository.findById(id).get());
-        model.addAttribute("edit", true);
-        Deal deal = dealRepository.findById(dealID).get();
-        model.addAttribute("deal", deal);
-        return "deals/create-or-edit";
-    }
 }

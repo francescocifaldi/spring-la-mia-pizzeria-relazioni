@@ -8,9 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping("/deals")
@@ -24,22 +25,29 @@ public class DealController {
             BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
-            return "deals/create";
+            return "deals/create-or-edit";
         }
         dealRepository.save(newDeal);
-        return "redirect:/pizzas";
+        return "redirect:/pizzas/" + newDeal.getPizza().getId();
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model) {
+        Deal deal = dealRepository.findById(id).get();
+        model.addAttribute("deal", deal);
+        model.addAttribute("edit", true);
+        return "deals/create-or-edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String update(@Valid @ModelAttribute("deal") Deal deal,
+    public String update(@Valid @ModelAttribute("deal") Deal newDeal,
             BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
-
             return "deals/create-or-edit";
         }
-        model.addAttribute("edit", true);
-        dealRepository.save(deal);
-        return "redirect:/pizzas";
+
+        dealRepository.save(newDeal);
+        return "redirect:/pizzas/" + newDeal.getPizza().getId();
     }
 }

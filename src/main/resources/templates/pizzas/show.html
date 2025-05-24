@@ -85,9 +85,8 @@
                             <td th:text="*{startDate}"></td>
                             <td th:text="*{endDate}"></td>
                             <td class="text-end">
-                                <a th:href="@{/pizzas/{id}/deals/{dealID}(id=${pizza.id}, dealID=${deal.id})}"
-                                    class="btn btn-primary btn-sm" title="Modifica offerta"><i
-                                        class="fa-solid fa-pen-to-square"></i></a>
+                                <a th:href="@{/deals/edit/{id}(id=${deal.id})}" class="btn btn-primary btn-sm"
+                                    title="Modifica offerta"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <form th:action="@{/pizzas/{id}/deals/{dealID}(id=${pizza.id}, dealID=${deal.id})}"
                                     method="post" class="d-inline">
                                     <button type="submit" class="btn btn-danger btn-sm" title="Elimina offerta"><i

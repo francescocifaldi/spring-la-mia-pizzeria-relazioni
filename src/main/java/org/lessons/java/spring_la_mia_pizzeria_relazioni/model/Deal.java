@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "deals")
@@ -18,6 +19,7 @@ public class Deal {
     private Integer id;
 
     @NotNull(message = "Il titolo è obbligatorio")
+    @Size(min = 3, max = 50, message = "Il titolo deve essere tra 3 e 50 caratteri")
     private String title;
 
     @NotNull(message = "La data di inizio è obbligatoria")
@@ -55,7 +57,7 @@ public class Deal {
         this.startDate = startDate;
     }
 
-    public @NotNull(message = "La data di fine è obbligatoria") LocalDate getEndDate() {
+    public LocalDate getEndDate() {
         return this.endDate;
     }
 

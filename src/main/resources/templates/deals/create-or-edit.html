@@ -18,6 +18,7 @@
             th:object="${deal}">
 
             <input type="hidden" th:field="*{pizza}" />
+            <input type="hidden" th:field="*{id}" />
 
             <div class="mb-3">
                 <div>
@@ -33,8 +34,8 @@
 
                 <div>
                     <label for="start-date" class="form-label">Data d'inizio</label>
-                    <input type="date" class="form-control" id="start-date" name="start-date" th:field="*{startDate}"
-                        th:errorclass="is-invalid"></input>
+                    <input type="date" class="form-control" id="start-date" th:field="*{startDate}"
+                        th:errorclass="is-invalid">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}">
                         <ul>
                             <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
@@ -43,8 +44,8 @@
                 </div>
                 <div>
                     <label for="end-date" class="form-label">Data di fine</label>
-                    <input type="date" class="form-control" id="end-date" name="end-date" th:field="*{endDate}"
-                        th:errorclass="is-invalid"></input>
+                    <input type="date" class="form-control" id="end-date" th:field="*{endDate}"
+                        th:errorclass="is-invalid">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('endDate')}">
                         <ul>
                             <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></li>
@@ -55,7 +56,7 @@
 
             <div class="mb-3 d-flex justify-content-between">
                 <input th:if="${edit}" type="submit" class="btn btn-primary" value="Salva" />
-                <input th:if="${!edit}" type="submit" class="btn btn-primary" value="Crea" />
+                <input th:unless="${edit}" type="submit" class="btn btn-primary" value="Crea" />
                 <input type="reset" class="btn btn-danger" value="Annulla" />
             </div>
         </form>
