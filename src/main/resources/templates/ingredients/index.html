@@ -21,19 +21,47 @@
                     <th>Nome</th>
                     <th>Numero di pizze in cui è presente</th>
                     <th></th>
-                    <th></th>
+
                 </thead>
                 <tbody>
                     <th:block th:each="ingredient : ${ingredients}" th:object="${ingredient}">
                         <tr>
                             <td th:text="*{name}"></td>
                             <td th:text="*{pizzas.size()}"></td>
-                            <td><a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}" class="btn btn-primary"
-                                    title="Modifica">
+                            <td class="text-end"><a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}"
+                                    class="btn btn-primary" title="Modifica">
                                     <i class="fa-solid fa-pen-to-square"></i>
-                                </a></td>
-                            <td>btn</td>
+                                </a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    th:data-bs-target="'#modal'+${ingredient.id}" title="Elimina">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
                         </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" th:id="'modal'+${ingredient.id}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Elimino ingrediente [[${ingredient.name}]]</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Sei sicuro?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Annulla</button>
+                                        <form th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}"
+                                            method="post">
+                                            <button type="submit" class="btn btn-danger">
+                                                Elimina
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </th:block>
                 </tbody>
             </table>

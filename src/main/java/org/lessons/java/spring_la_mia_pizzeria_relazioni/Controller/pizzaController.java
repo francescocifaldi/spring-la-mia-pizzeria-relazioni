@@ -96,7 +96,7 @@ public class PizzaController {
     }
 
     @GetMapping("/{id}/deal")
-    public String deal(@PathVariable("id") Integer id, Model model) {
+    public String createDeal(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("pizza", repo.findById(id).get());
         Deal deal = new Deal();
         deal.setPizza(repo.findById(id).get());
