@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/deals")
 public class DealController {
 
     @Autowired
-    private DealRepository repo;
+    private DealRepository dealRepository;
 
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("deal") Deal newDeal,
@@ -25,8 +26,20 @@ public class DealController {
         if (bindingResult.hasErrors()) {
             return "deals/create";
         }
-        repo.save(newDeal);
+        dealRepository.save(newDeal);
         return "redirect:/pizzas";
     }
 
+    @PostMapping("/edit/{id}")
+    public String update(@Valid @ModelAttribute("deal") Deal deal,
+            BindingResult bindingResult,
+            Model model) {
+        if (bindingResult.hasErrors()) {
+
+            return "deals/create-or-edit";
+        }
+        model.addAttribute("edit", true);
+        dealRepository.save(deal);
+        return "redirect:/pizzas";
+    }
 }

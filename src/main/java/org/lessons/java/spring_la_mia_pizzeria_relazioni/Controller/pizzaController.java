@@ -28,6 +28,9 @@ public class PizzaController {
     @Autowired
     private IngredientRepository ingredientRepository;
 
+    @Autowired
+    private DealRepository dealRepository;
+
     @GetMapping
     public String index(Model model) {
         List<Pizza> pizzas = pizzaRepository.findAll();
@@ -100,12 +103,21 @@ public class PizzaController {
         return "redirect:/pizzas";
     }
 
-    @GetMapping("/{id}/deal")
+    @GetMapping("/{id}/deals")
     public String createDeal(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("pizza", pizzaRepository.findById(id).get());
         Deal deal = new Deal();
         deal.setPizza(pizzaRepository.findById(id).get());
         model.addAttribute("deal", deal);
-        return "deals/create";
+        return "deals/create-or-edit";
+    }
+
+    @GetMapping("/{id}/deals/{dealID}")
+    public String editDeal(@PathVariable("id") Integer id, @PathVariable("dealID") Integer dealID, Model model) {
+        model.addAttribute("pizza", pizzaRepository.findById(id).get());
+        model.addAttribute("edit", true);
+        Deal deal = dealRepository.findById(dealID).get();
+        model.addAttribute("deal", deal);
+        return "deals/create-or-edit";
     }
 }

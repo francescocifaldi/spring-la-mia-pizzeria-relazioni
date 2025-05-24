@@ -10,9 +10,12 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center">Crea una nuova offerta per la pizza [[${pizza.name}]]</h1>
+        <h1 th:if="${edit}" class="text-center">Modifica l'offerta [[${deal.title}]] per la pizza [[${deal.pizza.name}]]
+        </h1>
+        <h1 th:unless="${edit}" class="text-center">Crea una nuova offerta per la pizza [[${deal.pizza.name}]]</h1>
 
-        <form id="deal-form" th:action="@{/deals/create}" method="post" th:object="${deal}">
+        <form id="deal-form" th:action="${edit} ? @{/deals/edit/{id}(id=${deal.id})} : @{/deals/create}" method="post"
+            th:object="${deal}">
 
             <input type="hidden" th:field="*{pizza}" />
 
@@ -51,7 +54,8 @@
             </div>
 
             <div class="mb-3 d-flex justify-content-between">
-                <input type="submit" class="btn btn-primary" value="Crea" />
+                <input th:if="${edit}" type="submit" class="btn btn-primary" value="Salva" />
+                <input th:if="${!edit}" type="submit" class="btn btn-primary" value="Crea" />
                 <input type="reset" class="btn btn-danger" value="Annulla" />
             </div>
         </form>

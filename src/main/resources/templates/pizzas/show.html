@@ -64,7 +64,8 @@
 
     <section class="pizza-deals">
         <div class="container mb-2">
-            <a th:href="@{/pizzas/{id}/deal(id=${pizza.id})}" class="btn btn-outline-danger w-100 px-0">Crea Offerta</a>
+            <a th:href="@{/pizzas/{id}/deals(id=${pizza.id})}" class="btn btn-outline-danger w-100 px-0">Crea
+                Offerta</a>
         </div>
         <div class="container" th:if="${!pizza.deals.isEmpty()}">
             <h4>Offerte disponibili:</h4>
@@ -74,6 +75,7 @@
                         <th>Nome</th>
                         <th>Data inizio</th>
                         <th>Data fine</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,6 +84,16 @@
                             <td th:text="*{title}"></td>
                             <td th:text="*{startDate}"></td>
                             <td th:text="*{endDate}"></td>
+                            <td class="text-end">
+                                <a th:href="@{/pizzas/{id}/deals/{dealID}(id=${pizza.id}, dealID=${deal.id})}"
+                                    class="btn btn-primary btn-sm" title="Modifica offerta"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+                                <form th:action="@{/pizzas/{id}/deals/{dealID}(id=${pizza.id}, dealID=${deal.id})}"
+                                    method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Elimina offerta"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     </th:block>
                 </tbody>
